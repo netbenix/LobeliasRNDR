@@ -3,7 +3,6 @@ import org.openrndr.math.Vector3
 import org.openrndr.math.Vector4
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
-import java.util.Vector
 
 class RenderObject(val vertCount: Int, val indexCount: Int) {
     val vertBuff: VertexBuffer = vertexBuffer(vertexFormat {

@@ -1,22 +1,9 @@
 import org.openrndr.*
 import org.openrndr.color.ColorRGBa
-import org.openrndr.color.mix
 import org.openrndr.draw.*
-import org.openrndr.extensions.Screenshots
-import org.openrndr.extra.color.presets.PURPLE
-import org.openrndr.extra.fx.distort.Tiles
-import org.openrndr.extra.meshgenerators.boxMesh
-import org.openrndr.extra.noise.Random
 import org.openrndr.extra.olive.oliveProgram
-import org.openrndr.extra.shadestyles.linearGradient
-import org.openrndr.internal.Driver
-import org.openrndr.math.Matrix44
-import org.openrndr.math.Vector2
 import org.openrndr.math.Vector3
 import org.openrndr.math.Vector4
-import org.openrndr.shape.contour
-import java.nio.ByteBuffer
-import java.nio.ByteOrder
 
 /**
  *  This is a template for a live program.
