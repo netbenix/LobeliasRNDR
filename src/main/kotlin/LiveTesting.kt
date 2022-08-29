@@ -21,38 +21,18 @@ fun main() = application {
 
     }
     oliveProgram {
-
         val scrollSensitivty: Double = 2.0
         val font = loadFont("data/fonts/default.otf", 16.0)
 
-        var obj = RenderObject(5, 18)
-        obj.shader = shadeStyle {
-            vertexTransform = """
-                    va_color = a_color;
-                """.trimIndent()
-            fragmentTransform = """
-                    x_fill = va_color;
-                """
-        }
+        val obj = TestPyramidObject(Vector3(0.0, 0.0, 0.0))
+        val obj2 = TestPyramidObject(Vector3(5.0, 0.0, 0.0))
+        val obj3 = TestPyramidObject(Vector3(0.0, 0.0, 5.0))
+        val obj4 = TestPyramidObject(Vector3(-5.0, 0.0, 0.0))
 
-        obj.position = Vector3(obj.position.x, obj.position.y, obj.position.z -10.0)
-
-        obj.insertVert(0, Vector3(-1.0,0.0,1.0), Vector4(1.0,0.0,0.0,1.0))
-        obj.insertVert(1, Vector3(1.0,0.0,1.0), Vector4(0.0,0.0,1.0,1.0))
-        obj.insertVert(2, Vector3(1.0,0.0,-1.0), Vector4(0.0,1.0,0.0,1.0))
-        obj.insertVert(3, Vector3(-1.0,0.0,-1.0), Vector4(1.0,0.0,1.0,1.0))
-        obj.insertVert(4, Vector3(0.0, 2.0, 0.0), Vector4(0.5, 0.5, 0.5, 1.0))
-
-        obj.insertIndexes(
-            shortArrayOf(
-                0, 1, 3,
-                2, 1, 3,
-                3, 4, 2,
-                2, 4, 1,
-                1, 4, 0,
-                0, 4, 3
-            )
-        )
+        obj.position = Vector3(obj.position.x, obj.position.y, obj.position.z)
+        obj2.position = Vector3(obj2.position.x, obj2.position.y, obj2.position.z)
+        obj3.position = Vector3(obj3.position.x, obj3.position.y, obj3.position.z)
+        obj4.position = Vector3(obj4.position.x, obj4.position.y, obj4.position.z)
 
         mouse.dragged.listen { mse ->
 
@@ -81,15 +61,29 @@ fun main() = application {
             drawer.text("PosZ: ${obj.rotation.z}", 0.0, 80.0)
 
             drawer.perspective(60.0, width * 1.0 / height, 0.01, 2000.0)
-            drawer.shadeStyle = obj.shader
+            drawer.translate(Vector3(0.0, 0.0, -10.0)) //CAMERA
 
+            drawer.shadeStyle = obj.shader
             drawer.depthWrite = true
-            drawer.strokeWeight = 10.0;
             drawer.depthTestPass = DepthTestPass.LESS_OR_EQUAL
             drawer.translate(obj.position.x, obj.position.y, obj.position.z)
             drawer.rotate(Vector3.UNIT_X, obj.rotation.x)
             drawer.rotate(Vector3.UNIT_Y, obj.rotation.y)
             drawer.vertexBuffer(obj.indexBuff, listOf(obj.vertBuff), DrawPrimitive.TRIANGLES)
+
+            //TODO: Implement Global positioning
+
+            drawer.shadeStyle = obj2.shader
+            drawer.translate(obj2.position.x, obj2.position.y, obj2.position.z)
+            drawer.vertexBuffer(obj2.indexBuff, listOf(obj2.vertBuff), DrawPrimitive.TRIANGLES)
+
+            drawer.shadeStyle = obj3.shader
+            drawer.translate(obj3.position.x, obj3.position.y, obj3.position.z)
+            drawer.vertexBuffer(obj3.indexBuff, listOf(obj3.vertBuff), DrawPrimitive.TRIANGLES)
+
+            drawer.shadeStyle = obj4.shader
+            drawer.translate(obj4.position.x, obj4.position.y, obj4.position.z)
+            drawer.vertexBuffer(obj4.indexBuff, listOf(obj4.vertBuff), DrawPrimitive.TRIANGLES)
         }
     }
 }
