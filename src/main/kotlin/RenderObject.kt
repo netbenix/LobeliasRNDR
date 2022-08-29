@@ -4,7 +4,7 @@ import org.openrndr.math.Vector4
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 
-class RenderObject(val vertCount: Int, val indexCount: Int) {
+open class RenderObject(private val vertCount: Int, private val indexCount: Int) {
     val vertBuff: VertexBuffer = vertexBuffer(vertexFormat {
         position(3)
         color(4)
