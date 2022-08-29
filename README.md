@@ -1,2 +1,2 @@
 # LobeliasRNDR
-Based of the openrndr-template
+Based on the [openrdnr-template](https://github.com/openrndr/openrndr-template) repository
