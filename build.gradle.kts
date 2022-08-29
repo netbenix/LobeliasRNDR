@@ -6,7 +6,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 group = "de.codenoodles.LobeliasRNDR"
 version = "0.1.0"
 
-val applicationMainClass = "LiveTesting"
+val applicationMainClass = "MainKt"
 
 /**  ## additional ORX features to be added to this project */
 val orxFeatures = setOf<String>(
