@@ -14,7 +14,7 @@ fun main() = application {
     }
     program {
 
-        val scrollSensitivty: Double = 2.0
+        /*val scrollSensitivty: Double = 2.0
 
         var obj = RenderObject(5, 18)
         obj.shader = shadeStyle {
@@ -69,6 +69,6 @@ fun main() = application {
             drawer.rotate(Vector3.UNIT_X, obj.rotation.x)
             drawer.rotate(Vector3.UNIT_Y, obj.rotation.y)
             drawer.vertexBuffer(obj.indexBuff, listOf(obj.vertBuff), DrawPrimitive.TRIANGLES)
-        }
+        }*/
     }
 }
