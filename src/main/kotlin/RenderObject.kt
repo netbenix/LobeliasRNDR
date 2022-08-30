@@ -1,10 +1,11 @@
+import org.openrndr.Program
 import org.openrndr.draw.*
 import org.openrndr.math.Vector3
 import org.openrndr.math.Vector4
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 
-open class RenderObject(private val vertCount: Int, private val indexCount: Int) {
+abstract class RenderObject(private val vertCount: Int, private val indexCount: Int): Renderable, Tickable {
     val vertBuff: VertexBuffer = vertexBuffer(vertexFormat {
         position(3)
         color(4)
@@ -13,7 +14,7 @@ open class RenderObject(private val vertCount: Int, private val indexCount: Int)
     var shader: ShadeStyle = shadeStyle {}
     var position: Vector3 = Vector3(0.0, 0.0, 0.0)
     var rotation: Vector3 = Vector3(0.0, 0.0, 0.0)
-
+    var scale: Double = 1.0
 
     fun fillIndexBuff(byteBuff: ByteBuffer) {
         indexBuff.write(byteBuff)
@@ -38,4 +39,9 @@ open class RenderObject(private val vertCount: Int, private val indexCount: Int)
         fillIndexBuff(bb)
     }
 
+    override fun tick(delta: Double) {}
+}
+
+interface Renderable {
+    fun Program.render(drawer: Drawer)
 }
