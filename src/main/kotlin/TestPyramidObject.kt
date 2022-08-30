@@ -3,7 +3,7 @@ import org.openrndr.math.Vector3
 import org.openrndr.math.Vector4
 
 class TestPyramidObject(vertCount: Int = 5, indexCount: Int = 18) : RenderObject(vertCount, indexCount) {
-    fun initObject(){
+    private fun initObject(){
         this.insertVert(0, Vector3(-1.0,0.0,1.0), Vector4(1.0,0.0,0.0,1.0))
         this.insertVert(1, Vector3(1.0,0.0,1.0), Vector4(0.0,0.0,1.0,1.0))
         this.insertVert(2, Vector3(1.0,0.0,-1.0), Vector4(0.0,1.0,0.0,1.0))
