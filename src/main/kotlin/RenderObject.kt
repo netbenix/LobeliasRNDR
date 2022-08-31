@@ -41,8 +41,9 @@ abstract class RenderObject(private val vertCount: Int, private val indexCount: 
         fillIndexBuff(bb)
     }
 
-    fun hover(hoverHeight: Double, hoverSpeed: Double, seconds: Double){
-        position = Vector3(position.x, (sin(seconds * hoverSpeed)/4 + 0.25 + hoverHeight), position.z)
+
+    fun hover(hoverHeight: Double, hoverSpeed: Double, intensity: Double, seconds: Double){
+        position = Vector3(position.x, (sin(seconds * hoverSpeed)*intensity + intensity * 1.0 + hoverHeight), position.z)
     }
 
     fun spin(degrees: Double){

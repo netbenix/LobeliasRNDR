@@ -61,34 +61,31 @@ fun main() = application {
         var lastTick = 0.0
 
         extend {
+
             val now = seconds
             val delta = now - lastTick
             renderables.forEach { it.tick(delta) }
             lastTick = now
-            //TODO: function
             renderObjects(rt, program, camera, renderables)
-            obj.hover(0.0, 5.0, seconds)
-            obj.spin(90.0)
-            //TODO: end todo
+
+            //Apply movement + rotation
+            obj.move(Vector3(sin(seconds*10)* 10.0, 0.0, 0.0), 1.0)
+            obj.spin(720.0)
+
+            obj2.spin(360.0)
+
+            obj3.hover(0.0, 5.0, 2.0, seconds)
+
+            obj4.hover(0.5, 10.0, 1.0, seconds)
+            obj4.spin(180.0)
+
+            obj7.spin(90.0)
+
+            obj8.hover(0.0, 3.0, 1.0, seconds)
 
             drawer.image(rt.colorBuffer(0), 0.0, 0.0, program.width.toDouble(), program.height.toDouble())
             rt.clearColor(0, ColorRGBa.TRANSPARENT)
             rt.clearDepth(0.0, 0)
-        }
-    }
-}
-
-fun renderObjects(rt: RenderTarget, program: Program, camera: OrbitalCamera, objects: List<RenderObject>){
-    with(program) {
-        drawer.isolatedWithTarget(rt) {
-            drawer.clear(ColorRGBa.CYAN) //SkyColor (NECESSARY)
-            camera.beforeDraw(this, program)
-            objects.forEach {
-                with(it) {
-                    render(this@isolatedWithTarget)
-                }
-            }
-            camera.afterDraw(this, program)
         }
     }
 }
