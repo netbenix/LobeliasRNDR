@@ -43,17 +43,4 @@ class PlaneObject(vertCount: Int = 4, indexCount: Int = 6):RenderObject(vertCoun
         this.scale = scale
         initObject()
     }
-
-    override fun Program.render(drawer: Drawer) {
-        drawer.isolated {
-            shadeStyle = shader
-            translate(position)
-            vertexBuffer(indexBuff, listOf(vertBuff), DrawPrimitive.TRIANGLES)
-            translate(-position)
-        }
-    }
-}
-
-interface Tickable {
-    fun tick(delta: Double)
 }

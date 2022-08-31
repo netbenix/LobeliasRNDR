@@ -3,6 +3,7 @@ import org.openrndr.draw.*
 import org.openrndr.draw.shadeStyle
 import org.openrndr.math.Vector3
 import org.openrndr.math.Vector4
+import java.lang.Math.sin
 
 class TestPyramidObject(vertCount: Int = 5, indexCount: Int = 18) : RenderObject(vertCount, indexCount) {
     private fun initObject(){
@@ -38,19 +39,4 @@ class TestPyramidObject(vertCount: Int = 5, indexCount: Int = 18) : RenderObject
         this.position = vec3
     }
 
-
-    override fun Program.render(drawer: Drawer) {
-        drawer.isolated {
-            shadeStyle = shader
-            translate(position)
-            rotate(Vector3.UNIT_Y, state)
-            vertexBuffer(indexBuff, listOf(vertBuff), DrawPrimitive.TRIANGLES)
-        }
-    }
-
-    override fun tick(delta: Double) {
-        state += 90.0 * delta
-    }
-
-    private var state: Double = 0.0
 }
