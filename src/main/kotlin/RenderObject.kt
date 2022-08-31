@@ -13,8 +13,8 @@ abstract class RenderObject(private val vertCount: Int, private val indexCount: 
     }, vertCount)
     val indexBuff: IndexBuffer = indexBuffer(indexCount, IndexType.INT16)
     var shader: ShadeStyle = shadeStyle {}
-    var position: Vector3 = Vector3(0.0, 0.0, 0.0)
-    var rotation: Vector3 = Vector3(0.0, 0.0, 0.0)
+    var position: Vector3 = Vector3.ZERO
+    var rotation: Vector3 = Vector3.ZERO
     var delta: Double = 0.0
     var scale: Double = 1.0
 
@@ -49,12 +49,18 @@ abstract class RenderObject(private val vertCount: Int, private val indexCount: 
         rotation = Vector3(rotation.x, (rotation.y + degrees * delta), rotation.z)
     }
 
+    fun move(targetPos: Vector3, speed: Double){
+        if(targetPos.distanceTo(position) >= 0.5){
+            position += targetPos * 0.01 * speed
+        }
+    }
+
     override fun Program.render(drawer: Drawer) {
         drawer.isolated {
             shadeStyle = shader
             translate(position)
             rotate(Vector3.UNIT_X, rotation.x)
-            rotate(Vector3.UNIT_Y, rotation.y*1.2)
+            rotate(Vector3.UNIT_Y, rotation.y)
             rotate(Vector3.UNIT_Z, rotation.z)
             vertexBuffer(indexBuff, listOf(vertBuff), DrawPrimitive.TRIANGLES)
         }
