@@ -1,3 +1,4 @@
+import Objects.RenderObject
 import org.openrndr.Program
 import org.openrndr.color.ColorRGBa
 import org.openrndr.draw.RenderTarget

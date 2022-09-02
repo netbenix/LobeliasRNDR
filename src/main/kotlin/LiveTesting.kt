@@ -1,16 +1,16 @@
+import Objects.PlaneObject
+import Objects.PyramidObject
+import Objects.TestPyramidObject
 import org.openrndr.*
 import org.openrndr.color.ColorRGBa
 import org.openrndr.draw.*
 import org.openrndr.extra.camera.*
-import org.openrndr.extra.color.presets.ORANGE
 import org.openrndr.extra.olive.oliveProgram
-import org.openrndr.internal.Driver
-import org.openrndr.math.Matrix44
-import org.openrndr.math.Vector2
 import org.openrndr.math.Vector3
-import org.openrndr.math.transforms.translate
-import org.openrndr.shape.Rectangle
+import org.openrndr.math.Vector4
+import kotlin.math.cos
 import kotlin.math.sin
+import kotlin.math.tan
 
 /**
  *  This is a template for a live program.
@@ -44,11 +44,15 @@ fun main() = application {
         val obj3 = TestPyramidObject(Vector3(6.0, 0.0, 6.0))
         val obj4 = TestPyramidObject(Vector3(6.0, 0.0, 0.0))
         val obj5 = TestPyramidObject(Vector3(12.0, 0.0, 0.0))
+        obj5.setObjectScale(1.6)
         val obj6 = TestPyramidObject(Vector3(12.0, 0.0, 6.0))
+        obj6.setObjectScale(1.9)
         val obj7 = TestPyramidObject(Vector3(0.0, 0.0, -6.0))
         val obj8 = TestPyramidObject(Vector3(6.0, 0.0, -6.0))
         val obj9 = TestPyramidObject(Vector3(12.0, 0.0, -6.0))
-        val floor = PlaneObject(Vector3(2.5, -0.01, 3.0), 30.0)
+        obj9.setObjectScale(1.3)
+        val floor = PlaneObject(Vector3(5.0, -0.01, 0.0), Vector4(0.5, 0.5,0.5,1.0))
+        floor.setObjectScale(20.0)
 
         val camera = OrbitalCamera(
             Vector3.UNIT_Z, Vector3.ZERO, 90.0, 0.1, 50.0
@@ -69,8 +73,9 @@ fun main() = application {
             renderObjects(rt, program, camera, renderables)
 
             //Apply movement + rotation
-            obj.move(Vector3(sin(seconds*10)* 10.0, 0.0, 0.0), 1.0)
+            obj.move(Vector3(sin(seconds*10)* 10.0, cos(seconds*10.0) * 30.0, 0.0), 1.0)
             obj.spin(720.0)
+            obj.setObjectScale(0.5)
 
             obj2.spin(360.0)
 

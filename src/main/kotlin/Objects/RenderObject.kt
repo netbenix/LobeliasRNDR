@@ -1,3 +1,7 @@
+package Objects
+
+import IRenderable
+import ITickable
 import org.openrndr.Program
 import org.openrndr.draw.*
 import org.openrndr.math.Vector3
@@ -6,17 +10,17 @@ import java.nio.ByteBuffer
 import java.nio.ByteOrder
 import kotlin.math.sin
 
-abstract class RenderObject(private val vertCount: Int, private val indexCount: Int): IRenderable, ITickable {
-    val vertBuff: VertexBuffer = vertexBuffer(vertexFormat {
+abstract class RenderObject(private val vertCount: Int, private val indexCount: Int, protected val color: Vector4): IRenderable, ITickable {
+    private val vertBuff: VertexBuffer = vertexBuffer(vertexFormat {
         position(3)
         color(4)
     }, vertCount)
-    val indexBuff: IndexBuffer = indexBuffer(indexCount, IndexType.INT16)
+    private val indexBuff: IndexBuffer = indexBuffer(indexCount, IndexType.INT16)
     var shader: ShadeStyle = shadeStyle {}
-    var position: Vector3 = Vector3.ZERO
-    var rotation: Vector3 = Vector3.ZERO
-    var delta: Double = 0.0
-    var scale: Double = 1.0
+    protected var position: Vector3 = Vector3.ZERO
+    protected var rotation: Vector3 = Vector3.ZERO
+    private var delta: Double = 0.0
+    protected var scale: Double = 1.0
 
     fun fillIndexBuff(byteBuff: ByteBuffer) {
         indexBuff.write(byteBuff)
@@ -41,6 +45,10 @@ abstract class RenderObject(private val vertCount: Int, private val indexCount: 
         fillIndexBuff(bb)
     }
 
+    fun setObjectScale(scale: Double){
+        this.scale = scale
+    }
+
 
     fun hover(hoverHeight: Double, hoverSpeed: Double, intensity: Double, seconds: Double){
         position = Vector3(position.x, (sin(seconds * hoverSpeed)*intensity + intensity * 1.0 + hoverHeight), position.z)
@@ -63,6 +71,7 @@ abstract class RenderObject(private val vertCount: Int, private val indexCount: 
             rotate(Vector3.UNIT_X, rotation.x)
             rotate(Vector3.UNIT_Y, rotation.y)
             rotate(Vector3.UNIT_Z, rotation.z)
+            scale(scale)
             vertexBuffer(indexBuff, listOf(vertBuff), DrawPrimitive.TRIANGLES)
         }
     }

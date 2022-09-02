@@ -1,15 +1,10 @@
+import Objects.PlaneObject
+import Objects.TestPyramidObject
 import org.openrndr.*
 import org.openrndr.color.ColorRGBa
 import org.openrndr.draw.*
 import org.openrndr.extra.camera.*
-import org.openrndr.extra.color.presets.ORANGE
-import org.openrndr.extra.olive.oliveProgram
-import org.openrndr.internal.Driver
-import org.openrndr.math.Matrix44
-import org.openrndr.math.Vector2
 import org.openrndr.math.Vector3
-import org.openrndr.math.transforms.translate
-import org.openrndr.shape.Rectangle
 import kotlin.math.sin
 import kotlin.system.exitProcess
 
