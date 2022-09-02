@@ -73,7 +73,7 @@ fun main() = application {
             renderObjects(rt, program, camera, renderables)
 
             //Apply movement + rotation
-            obj.move(Vector3(sin(seconds*10)* 10.0, cos(seconds*10.0) * 30.0, 0.0), 1.0)
+            obj.move(Vector3(sin(seconds*10)* 10.0, 0.0, 0.0), 1.0)
             obj.spin(720.0)
             obj.setObjectScale(0.5)
 

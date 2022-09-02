@@ -1,7 +1,7 @@
 package Objects
 
-import IRenderable
-import ITickable
+import Renderable
+import Tickable
 import org.openrndr.Program
 import org.openrndr.draw.*
 import org.openrndr.math.Vector3
@@ -10,7 +10,7 @@ import java.nio.ByteBuffer
 import java.nio.ByteOrder
 import kotlin.math.sin
 
-abstract class RenderObject(private val vertCount: Int, private val indexCount: Int, protected val color: Vector4): IRenderable, ITickable {
+abstract class RenderObject(private val vertCount: Int, private val indexCount: Int, protected val color: Vector4): Renderable, Tickable {
     private val vertBuff: VertexBuffer = vertexBuffer(vertexFormat {
         position(3)
         color(4)

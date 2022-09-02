@@ -1,3 +1,3 @@
-interface ITickable {
+interface Tickable {
     fun tick(delta: Double)
 }
