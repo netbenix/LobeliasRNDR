@@ -7,13 +7,18 @@ import org.openrndr.math.Vector3
 import org.openrndr.math.Vector4
 import java.lang.Math.sin
 
-class PyramidObject(vertCount: Int = 5, indexCount: Int = 18, color: Vector4 = Vector4(1.0)) : RenderObject(vertCount, indexCount, color) {
+open class PyramidObject(vertCount: Int = 5, indexCount: Int = 18, color: Vector4 = Vector4.ONE) : RenderObject(vertCount, indexCount, color) {
     private fun initObject(){
-        this.insertVert(0, Vector3(-1.0,0.0,1.0), color)
-        this.insertVert(1, Vector3(1.0,0.0,1.0), color)
-        this.insertVert(2, Vector3(1.0,0.0,-1.0), color)
-        this.insertVert(3, Vector3(-1.0,0.0,-1.0), color)
-        this.insertVert(4, Vector3(0.0, 2.0, 0.0), color)
+        vertices[0].position = Vector3(-1.0,0.0,1.0)
+        vertices[1].position = Vector3(1.0,0.0,1.0)
+        vertices[2].position = Vector3(1.0,0.0,-1.0)
+        vertices[3].position = Vector3(-1.0,0.0,-1.0)
+        vertices[4].position = Vector3(0.0, 2.0, 0.0)
+
+
+        calculateNormals()
+        this.fillColor(color)
+        this.insertVerts()
 
         this.insertIndexes(
             shortArrayOf(
@@ -25,15 +30,6 @@ class PyramidObject(vertCount: Int = 5, indexCount: Int = 18, color: Vector4 = V
                 0, 4, 3
             )
         )
-
-        this.shader = shadeStyle {
-            vertexTransform = """
-                    va_color = a_color;
-                """.trimIndent()
-            fragmentTransform = """
-                    x_fill = va_color;
-                """
-        }
     }
 
     constructor(vec3: Vector3): this(){

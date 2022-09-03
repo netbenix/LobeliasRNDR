@@ -6,11 +6,20 @@ import org.openrndr.math.Vector4
 
 class TestPyramidObject(vertCount: Int = 5, indexCount: Int = 18, color: Vector4 = Vector4.ZERO) : RenderObject(vertCount, indexCount, color) {
     private fun initObject(){
-        this.insertVert(0, Vector3(-1.0,0.0,1.0), Vector4(1.0,0.0,0.0,1.0))
-        this.insertVert(1, Vector3(1.0,0.0,1.0), Vector4(0.0,0.0,1.0,1.0))
-        this.insertVert(2, Vector3(1.0,0.0,-1.0), Vector4(0.0,1.0,0.0,1.0))
-        this.insertVert(3, Vector3(-1.0,0.0,-1.0), Vector4(1.0,0.0,1.0,1.0))
-        this.insertVert(4, Vector3(0.0, 2.0, 0.0), Vector4(0.5, 0.5, 0.5, 1.0))
+
+        vertices[0].position = Vector3(-1.0,0.0,1.0)
+        vertices[0].color = Vector4(1.0,0.0,0.0,1.0)
+        vertices[1].position = Vector3(1.0,0.0,1.0)
+        vertices[1].color = Vector4(0.0,0.0,1.0,1.0)
+        vertices[2].position = Vector3(1.0,0.0,-1.0)
+        vertices[2].color = Vector4(0.0,1.0,0.0,1.0)
+        vertices[3].position = Vector3(-1.0,0.0,-1.0)
+        vertices[3].color = Vector4(1.0,0.0,1.0,1.0)
+        vertices[4].position = Vector3(0.0, 2.0, 0.0)
+        vertices[4].color = Vector4(0.5, 0.5, 0.5, 1.0)
+
+        //calculateNormals()
+        insertVerts()
 
         this.insertIndexes(
             shortArrayOf(
@@ -24,13 +33,14 @@ class TestPyramidObject(vertCount: Int = 5, indexCount: Int = 18, color: Vector4
         )
 
         this.shader = shadeStyle {
-            vertexTransform = """
-                    va_color = a_color;
+            vertexTransform = """ 
+                    va_color = a_color; 
                 """.trimIndent()
-            fragmentTransform = """
-                    x_fill = va_color;
+            fragmentTransform = """ 
+                    x_fill = va_color; 
                 """
         }
+
     }
 
     constructor(vec3: Vector3): this(5, 18){
