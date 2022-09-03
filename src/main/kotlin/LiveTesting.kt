@@ -1,3 +1,4 @@
+import Objects.CubeObject
 import Objects.PlaneObject
 import Objects.PyramidObject
 import Objects.TestPyramidObject
@@ -5,6 +6,7 @@ import org.openrndr.*
 import org.openrndr.color.ColorRGBa
 import org.openrndr.draw.*
 import org.openrndr.extra.camera.*
+import org.openrndr.extra.meshgenerators.boxMesh
 import org.openrndr.extra.olive.oliveProgram
 import org.openrndr.math.Vector3
 import org.openrndr.math.Vector4
@@ -31,7 +33,7 @@ fun main() = application {
     }
 
     oliveProgram {
-        val rt = renderTarget(160*2, 120*2, multisample = BufferMultisample.Disabled) {
+        val rt = renderTarget(160*8, 120*8, multisample = BufferMultisample.Disabled) {
             colorBuffer()
             depthBuffer()
         }.apply {
@@ -49,7 +51,7 @@ fun main() = application {
         obj6.setObjectScale(1.9)
         val obj7 = TestPyramidObject(Vector3(0.0, 0.0, -6.0))
         val obj8 = TestPyramidObject(Vector3(6.0, 0.0, -6.0))
-        val obj9 = TestPyramidObject(Vector3(12.0, 0.0, -6.0))
+        val obj9 = CubeObject(Vector3(12.0, 1.0, -6.0))
         obj9.setObjectScale(1.3)
         val floor = PlaneObject(Vector3(5.0, -0.01, 0.0), Vector4(0.5, 0.5,0.5,1.0))
         floor.setObjectScale(20.0)
@@ -61,7 +63,7 @@ fun main() = application {
 
         extend(controls)
 
-        val renderables = listOf(floor, obj, obj2, obj3, obj4, obj5, obj6, obj7,obj8, obj9)
+        val renderables = listOf(floor, obj, obj2, obj3, obj4, obj5, obj6, obj7, obj8, obj9)
         var lastTick = 0.0
 
         extend {
@@ -87,6 +89,8 @@ fun main() = application {
             obj7.spin(90.0)
 
             obj8.hover(0.0, 3.0, 1.0, seconds)
+
+            obj9.spin(90.0)
 
             drawer.image(rt.colorBuffer(0), 0.0, 0.0, program.width.toDouble(), program.height.toDouble())
             rt.clearColor(0, ColorRGBa.TRANSPARENT)
