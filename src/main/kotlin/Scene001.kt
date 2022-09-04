@@ -22,7 +22,7 @@ fun main () = application {
 
 
     oliveProgram {
-        val rt = renderTarget(320*4, 240*4, multisample = BufferMultisample.Disabled){
+        val rt = renderTarget(320, 240, multisample = BufferMultisample.Disabled){
             colorBuffer()
             depthBuffer()
         }. apply {
@@ -47,7 +47,7 @@ fun main () = application {
         val r001_wallLeft = CubeObject(Vector3(-15.0, 3.01, 1.0), Vector3(0.3, 3.0, 7.0), Vector4(0.381, 0.375, 0.750, 1.0))
         val r001_wallBack = CubeObject(Vector3(-7.70, 3.01, -5.70), Vector3(7.0, 3.0, 0.3), Vector4(0.381, 0.375, 0.750, 1.0))
         val pedestal = CubeObject(Vector3(-8.5, 0.2501, 1.0), Vector3(1.0, 0.25, 1.0), Vector4(0.248, 0.491, 0.540, 1.0))
-        val floatingCrystal = PyramidObject(Vector3(-8.5, 0.2501, 1.0), Vector4(0.970, 0.359, 0.705, 0.7), Vector3(0.5))
+        val floatingCrystal = PyramidObject(Vector3(-8.5, 0.2501, 1.0), Vector4(0.970, 0.359, 0.705, 0.6), Vector3(0.5))
 
 
         val renderables = listOf(floor, r001_wallLeft, r001_wallBack, pedestal, floatingCrystal)
