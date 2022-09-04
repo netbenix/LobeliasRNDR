@@ -25,14 +25,15 @@ abstract class RenderObject(private val vertCount: Int, private val indexCount: 
         fragmentTransform = """
                         vec3 lightDir = normalize(vec3(0.3, 1.0, 0.5));
                         float l = dot(va_normal, lightDir) * 0.4 + 0.5;
-                        x_fill.rgb *= l; 
+                        x_fill = va_color;
+                        x_fill.rgb *= l*2; 
                     """.trimIndent()
     }
     protected var position: Vector3 = Vector3.ZERO
     var vertices: Array<Vertex> = Array(vertCount) {Vertex(Vector3.ZERO, Vector3.ZERO, Vector4.ZERO)}
-    private var rotation: Vector3 = Vector3.ZERO
+    protected var rotation: Vector3 = Vector3.ZERO
     private var delta: Double = 0.0
-    protected var scale: Double = 1.0
+    protected var scale: Vector3 = Vector3.ONE
 
     fun insertVerts(){
         for(i in 0 until vertCount){
@@ -56,10 +57,6 @@ abstract class RenderObject(private val vertCount: Int, private val indexCount: 
         indexBuff.write(bb)
     }
 
-    fun setObjectScale(scale: Double){
-        this.scale = scale
-    }
-
     fun hover(hoverHeight: Double, hoverSpeed: Double, intensity: Double, seconds: Double){
         position = Vector3(position.x, (sin(seconds * hoverSpeed)*intensity + intensity * 1.0 + hoverHeight), position.z)
     }
@@ -81,7 +78,6 @@ abstract class RenderObject(private val vertCount: Int, private val indexCount: 
             rotate(Vector3.UNIT_X, rotation.x)
             rotate(Vector3.UNIT_Y, rotation.y)
             rotate(Vector3.UNIT_Z, rotation.z)
-            scale(scale)
             vertexBuffer(indexBuff, listOf(vertBuff), DrawPrimitive.TRIANGLES)
         }
     }

@@ -9,12 +9,13 @@ import java.lang.Math.sin
 
 open class PyramidObject(vertCount: Int = 5, indexCount: Int = 18, color: Vector4 = Vector4.ONE) : RenderObject(vertCount, indexCount, color) {
     private fun initObject(){
-        vertices[0].position = Vector3(-1.0,0.0,1.0)
-        vertices[1].position = Vector3(1.0,0.0,1.0)
-        vertices[2].position = Vector3(1.0,0.0,-1.0)
-        vertices[3].position = Vector3(-1.0,0.0,-1.0)
-        vertices[4].position = Vector3(0.0, 2.0, 0.0)
+        vertices[0].position = Vector3(-1.0,0.0,1.0) * scale
+        vertices[1].position = Vector3(1.0,0.0,1.0) * scale
+        vertices[2].position = Vector3(1.0,0.0,-1.0) * scale
+        vertices[3].position = Vector3(-1.0,0.0,-1.0) * scale
+        vertices[4].position = Vector3(0.0, 2.0, 0.0) * scale
 
+        //TODO: Put scaling into insertVerts() method
 
         calculateNormals()
         this.fillColor(color)
@@ -33,13 +34,19 @@ open class PyramidObject(vertCount: Int = 5, indexCount: Int = 18, color: Vector
     }
 
     constructor(vec3: Vector3): this(){
-        initObject()
         this.position = vec3
+        initObject()
     }
 
     constructor(vec3: Vector3, col: Vector4): this(5, 18, col){
-        initObject()
         this.position = vec3
+        initObject()
+    }
+
+    constructor(vec3: Vector3, col: Vector4, scale: Vector3): this(5, 18, col){
+        this.scale = scale
+        this.position = vec3
+        initObject()
     }
 
 
