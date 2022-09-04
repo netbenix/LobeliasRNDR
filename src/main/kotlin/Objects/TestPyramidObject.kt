@@ -7,18 +7,18 @@ import org.openrndr.math.Vector4
 class TestPyramidObject(vertCount: Int = 5, indexCount: Int = 18, color: Vector4 = Vector4.ZERO) : RenderObject(vertCount, indexCount, color) {
     private fun initObject(){
 
-        vertices[0].position = Vector3(-1.0,0.0,1.0) * scale
+        vertices[0].position = Vector3(-1.0,0.0,1.0)
         vertices[0].color = Vector4(1.0,0.0,0.0,1.0)
-        vertices[1].position = Vector3(1.0,0.0,1.0) * scale
+        vertices[1].position = Vector3(1.0,0.0,1.0)
         vertices[1].color = Vector4(0.0,0.0,1.0,1.0)
-        vertices[2].position = Vector3(1.0,0.0,-1.0) * scale
+        vertices[2].position = Vector3(1.0,0.0,-1.0)
         vertices[2].color = Vector4(0.0,1.0,0.0,1.0)
-        vertices[3].position = Vector3(-1.0,0.0,-1.0) * scale
+        vertices[3].position = Vector3(-1.0,0.0,-1.0)
         vertices[3].color = Vector4(1.0,0.0,1.0,1.0)
-        vertices[4].position = Vector3(0.0, 2.0, 0.0) * scale
+        vertices[4].position = Vector3(0.0, 2.0, 0.0)
         vertices[4].color = Vector4(0.5, 0.5, 0.5, 1.0)
 
-        //calculateNormals()
+        calculateNormals()
         insertVerts()
 
         this.insertIndexes(

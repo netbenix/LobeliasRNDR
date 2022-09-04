@@ -7,10 +7,10 @@ import org.openrndr.math.Vector4
 class PlaneObject(vertCount: Int = 4, indexCount: Int = 6, color: Vector4 = Vector4(1.0)): RenderObject(vertCount, indexCount, color) {
     private fun initObject(){
 
-        vertices[0].position = Vector3(-1.0, 0.0, -1.0) * scale
-        vertices[1].position = Vector3(-1.0, 0.0, 1.0) * scale
-        vertices[2].position = Vector3(1.0, 0.0, 1.0) * scale
-        vertices[3].position = Vector3(1.0, 0.0, -1.0) * scale
+        vertices[0].position = Vector3(-1.0, 0.0, -1.0)
+        vertices[1].position = Vector3(-1.0, 0.0, 1.0)
+        vertices[2].position = Vector3(1.0, 0.0, 1.0)
+        vertices[3].position = Vector3(1.0, 0.0, -1.0)
 
         calculateNormals()
         fillColor(color)

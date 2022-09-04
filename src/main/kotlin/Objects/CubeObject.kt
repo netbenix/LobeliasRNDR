@@ -7,14 +7,14 @@ class CubeObject(vertCount: Int = 8, indexCount: Int = 36, color: Vector4 = Vect
 
     private fun initObject(){
 
-        vertices[0].position = Vector3(-1.0, -1.0, -1.0) * scale
-        vertices[1].position = Vector3(-1.0, 1.0, -1.0) * scale
-        vertices[2].position = Vector3(1.0, 1.0, -1.0) * scale
-        vertices[3].position = Vector3(1.0, -1.0, -1.0) * scale
-        vertices[4].position = Vector3(1.0, -1.0, 1.0) * scale
-        vertices[5].position = Vector3(1.0, 1.0, 1.0) * scale
-        vertices[6].position = Vector3(-1.0, 1.0, 1.0) * scale
-        vertices[7].position = Vector3(-1.0, -1.0, 1.0) * scale
+        vertices[0].position = Vector3(-1.0, -1.0, -1.0)
+        vertices[1].position = Vector3(-1.0, 1.0, -1.0)
+        vertices[2].position = Vector3(1.0, 1.0, -1.0)
+        vertices[3].position = Vector3(1.0, -1.0, -1.0)
+        vertices[4].position = Vector3(1.0, -1.0, 1.0)
+        vertices[5].position = Vector3(1.0, 1.0, 1.0)
+        vertices[6].position = Vector3(-1.0, 1.0, 1.0)
+        vertices[7].position = Vector3(-1.0, -1.0, 1.0)
 
         calculateNormals()
         fillColor(color)

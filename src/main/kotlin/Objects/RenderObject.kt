@@ -38,7 +38,7 @@ abstract class RenderObject(private val vertCount: Int, private val indexCount: 
     fun insertVerts(){
         for(i in 0 until vertCount){
             vertBuff.put(i) {
-                write(vertices[i].position)
+                write(vertices[i].position * scale)
                 write(vertices[i].normal)
                 write(vertices[i].color)
             }
