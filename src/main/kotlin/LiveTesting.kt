@@ -33,7 +33,7 @@ fun main() = application {
     }
 
     oliveProgram {
-        val rt = renderTarget(160*8, 120*8, multisample = BufferMultisample.Disabled) {
+        val rt = renderTarget(160*2, 120*2, multisample = BufferMultisample.Disabled) {
             colorBuffer()
             depthBuffer()
         }.apply {
@@ -41,20 +41,16 @@ fun main() = application {
             depthBuffer(0, 0, multisample = BufferMultisample.Disabled)
         }
 
-        val obj = TestPyramidObject(Vector3(0.0, 0.0, 0.0))
+        val obj = TestPyramidObject(Vector3(0.0, 0.0, 0.0), Vector3(0.5))
         val obj2 = TestPyramidObject(Vector3(0.0, 0.0, 6.0))
         val obj3 = TestPyramidObject(Vector3(6.0, 0.0, 6.0))
         val obj4 = TestPyramidObject(Vector3(6.0, 0.0, 0.0))
-        val obj5 = TestPyramidObject(Vector3(12.0, 0.0, 0.0))
-        obj5.setObjectScale(1.6)
-        val obj6 = TestPyramidObject(Vector3(12.0, 0.0, 6.0))
-        obj6.setObjectScale(1.9)
+        val obj5 = TestPyramidObject(Vector3(12.0, 0.0, 0.0), Vector3(1.6))
+        val obj6 = TestPyramidObject(Vector3(12.0, 0.0, 6.0), Vector3(1.9))
         val obj7 = TestPyramidObject(Vector3(0.0, 0.0, -6.0))
-        val obj8 = TestPyramidObject(Vector3(6.0, 0.0, -6.0))
-        val obj9 = CubeObject(Vector3(12.0, 1.0, -6.0))
-        obj9.setObjectScale(1.3)
-        val floor = PlaneObject(Vector3(5.0, -0.01, 0.0), Vector4(0.5, 0.5,0.5,1.0))
-        floor.setObjectScale(20.0)
+        val obj8 = PyramidObject(Vector3(6.0, 0.0, -6.0), Vector4(Math.random(), Math.random(), Math.random(), 1.0), Vector3(1.0, 3.0, 1.0))
+        val obj9 = CubeObject(Vector3(12.0, 3.0, -6.0), Vector3(2.0, 3.0, 1.0))
+        val floor = PlaneObject(Vector3(5.0, -0.01, 0.0), Vector4(0.5, 0.5,0.5,1.0), Vector3(20.0, 1.0, 20.0))
 
         val camera = OrbitalCamera(
             Vector3.UNIT_Z, Vector3.ZERO, 90.0, 0.1, 50.0
@@ -77,7 +73,6 @@ fun main() = application {
             //Apply movement + rotation
             obj.move(Vector3(sin(seconds*10)* 10.0, 0.0, 0.0), 1.0)
             obj.spin(720.0)
-            obj.setObjectScale(0.5)
 
             obj2.spin(360.0)
 
@@ -91,6 +86,8 @@ fun main() = application {
             obj8.hover(0.0, 3.0, 1.0, seconds)
 
             obj9.spin(90.0)
+
+            obj6.spin(-90.0)
 
             drawer.image(rt.colorBuffer(0), 0.0, 0.0, program.width.toDouble(), program.height.toDouble())
             rt.clearColor(0, ColorRGBa.TRANSPARENT)
