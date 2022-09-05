@@ -1,7 +1,7 @@
 package Objects
 
-import Renderable
-import Tickable
+import Interfaces.Renderable
+import Interfaces.Tickable
 import Vertex
 import org.openrndr.Program
 import org.openrndr.draw.*
@@ -11,7 +11,8 @@ import java.nio.ByteBuffer
 import java.nio.ByteOrder
 import kotlin.math.sin
 
-abstract class RenderObject(private val vertCount: Int, private val indexCount: Int, protected val color: Vector4): Renderable, Tickable {
+abstract class RenderObject(private val vertCount: Int, private val indexCount: Int, protected val color: Vector4): Renderable,
+    Tickable {
     private val vertBuff: VertexBuffer = vertexBuffer(vertexFormat {
         position(3)
         normal(3)
@@ -91,13 +92,7 @@ abstract class RenderObject(private val vertCount: Int, private val indexCount: 
 
         for(i in vertices.indices){
             val currVert = vertices[i]
-            var nextVert: Vertex
-
-            if(i == vertices.size-1){
-                nextVert = vertices[0]
-            } else {
-                nextVert = vertices[i+1]
-            }
+            var nextVert = vertices[(i + 1) % vertCount]
 
             normalVec = Vector3(
                 vertices[i].normal.x + ((currVert.position.y - nextVert.position.y) * (currVert.position.z + nextVert.position.z)),

@@ -6,13 +6,10 @@ import org.openrndr.*
 import org.openrndr.color.ColorRGBa
 import org.openrndr.draw.*
 import org.openrndr.extra.camera.*
-import org.openrndr.extra.meshgenerators.boxMesh
 import org.openrndr.extra.olive.oliveProgram
 import org.openrndr.math.Vector3
 import org.openrndr.math.Vector4
-import kotlin.math.cos
 import kotlin.math.sin
-import kotlin.math.tan
 
 /**
  *  This is a template for a live program.

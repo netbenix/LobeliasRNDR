@@ -43,7 +43,7 @@ fun main() = application {
         val obj7 = TestPyramidObject(Vector3(0.0, 0.0, -6.0))
         val obj8 = TestPyramidObject(Vector3(6.0, 0.0, -6.0))
         val obj9 = TestPyramidObject(Vector3(12.0, 0.0, -6.0))
-        val floor = PlaneObject(Vector3(2.5, -0.01, 3.0), 30.0)
+        val floor = PlaneObject(Vector3(2.5, -0.01, 3.0), Vector3(20.0, 1.0, 20.0))
 
         val camera = OrbitalCamera(
             Vector3.UNIT_Z, Vector3.ZERO, 90.0, 0.1, 50.0

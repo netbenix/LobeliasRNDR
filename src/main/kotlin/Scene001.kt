@@ -45,12 +45,13 @@ fun main () = application {
 
         //ROOM 001
         val r001_wallLeft = CubeObject(Vector3(-15.0, 3.01, 1.0), Vector3(0.3, 3.0, 7.0), Vector4(0.381, 0.375, 0.750, 1.0))
+        val r001_wallRight = CubeObject(Vector3(-0.4, 3.01, 1.0), Vector3(0.3, 3.0, 7.0), Vector4(0.381, 0.375, 0.750, 1.0), Vector3(180.0, 0.0, 180.0))
         val r001_wallBack = CubeObject(Vector3(-7.70, 3.01, -5.70), Vector3(7.0, 3.0, 0.3), Vector4(0.381, 0.375, 0.750, 1.0))
-        val pedestal = CubeObject(Vector3(-8.5, 0.2501, 1.0), Vector3(1.0, 0.25, 1.0), Vector4(0.248, 0.491, 0.540, 1.0))
-        val floatingCrystal = PyramidObject(Vector3(-8.5, 0.2501, 1.0), Vector4(0.970, 0.359, 0.705, 0.6), Vector3(0.5))
+        val pedestal = CubeObject(Vector3(-7.75, 0.2501, 1.0), Vector3(1.0, 0.25, 1.0), Vector4(0.248, 0.491, 0.540, 1.0))
+        val floatingCrystal = PyramidObject(Vector3(-7.75, 0.2501, 1.0), Vector4(0.970, 0.359, 0.705, 0.6), Vector3(0.5))
 
 
-        val renderables = listOf(floor, r001_wallLeft, r001_wallBack, pedestal, floatingCrystal)
+        val renderables = listOf(floor, r001_wallLeft, r001_wallRight, r001_wallBack, pedestal, floatingCrystal)
 
         extend {
             val now = seconds
@@ -61,7 +62,7 @@ fun main () = application {
 
 
             //Object transformations
-            floatingCrystal.hover(0.5001, 1.0, 0.2, seconds)
+            floatingCrystal.hover(0.6001, 2.0, 0.2, seconds)
             floatingCrystal.spin(90.0)
 
 
